@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
 import parse from "html-react-parser"
 
 // We're using Gutenberg so we need the block styles
@@ -14,11 +13,7 @@ import "../styles/@wordpress/block-library/build-style/theme.css"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const PageTemplate = ({ data: { previous, next, post } }) => {
-  const featuredImage = {
-    data: post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
-    alt: post.featuredImage?.node?.alt || ``,
-  }
+const PageTemplate = ({ data: { post } }) => {
 
   return (
     <Layout>
