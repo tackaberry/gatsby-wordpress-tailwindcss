@@ -24,6 +24,14 @@ const IndexPage = ({data}) => (
           </Link>
         </div>
       ))}
+      <h4>Careers</h4>
+      {data.allCareer.nodes.map(career => (
+        <div className="card"  key={career.id}>
+          <Link to={career.link}>
+            <h2>{career.name}</h2>
+          </Link>
+        </div>
+      ))}
   </Layout>
 )
 
@@ -42,6 +50,21 @@ export const pageQuery = graphql`
       nodes {
         title
         slug
+      }
+    }
+    allCareer {
+      nodes {
+        linkId
+        link
+        location {
+          city
+          country
+          remote
+        }
+        department {
+          label
+        }
+        name
       }
     }
   }

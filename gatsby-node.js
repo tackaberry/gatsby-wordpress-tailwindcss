@@ -1,5 +1,6 @@
 const path = require(`path`)
 
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const { createPage } = actions
@@ -10,7 +11,48 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const pages = await getPages({ graphql, reporter })
   await createPages({ pages, createPage })
 
+
 }
+
+exports.sourceNodes = async ({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) => {
+  await createCareerNode({ actions, createNodeId, createContentDigest })
+}
+
+
+const createCareerNode = async ({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) => {
+  const CAREER_NODE_TYPE = 'Career'
+
+  const { createNode } = actions
+
+  const response = await fetch(process.env.CAREERS_API_URL)
+  const careers = await response.json()
+
+  careers.content.forEach(career => {
+    console.log(`[Careers] Adding ${career.name}`)
+    createNode({
+      ...career,
+      id: createNodeId(`${CAREER_NODE_TYPE}-${career.id}`),
+      linkId: career.id,
+      link: `${process.env.CAREERS_LINK}${career.id}`,
+      parent: null,
+      children: [],
+      internal: {
+        type: CAREER_NODE_TYPE,
+        content: JSON.stringify(career),
+        contentDigest: createContentDigest(career),
+      },
+    })
+  })
+}
+
 
 
 const getPages = async ({ graphql, reporter }) => {

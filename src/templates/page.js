@@ -2,14 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 import parse from "html-react-parser"
 
-// We're using Gutenberg so we need the block styles
-// these are copied into this project due to a conflict in the postCSS
-// version used by the Gatsby and @wordpress packages that causes build
-// failures.
-// @todo update this once @wordpress upgrades their postcss version
-import "../styles/@wordpress/block-library/build-style/style.css"
-import "../styles/@wordpress/block-library/build-style/theme.css"
-
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
