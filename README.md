@@ -2,7 +2,7 @@
 
 ## Frontend
 
-Built with [Gatsby](https://www.gatsbyjs.com/) [Tailwind CSS](https://tailwindcss.com/). 
+Built with [Gatsby](https://www.gatsbyjs.com/) and [Tailwind CSS](https://tailwindcss.com/). 
 
 ### Install dependencies
 ```
@@ -13,6 +13,9 @@ npm install -g gatsby
 ```
 WORDPRESS_GRAPHQL_URL=http://testing.local/graphql
 SITE_URL=http://localhost:8000
+CAREERS_API_URL=https://api.hrplatform.com/company/postings
+CAREERS_LINK=https://www.hrplatform.com/company/
+
 ```
 
 ### Get started 
