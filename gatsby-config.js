@@ -37,11 +37,12 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
           url: process.env.WORDPRESS_GRAPHQL_URL,
-          includedRoutes: [
-            '**/posts',
-            '**/tags',
-            '**/categories'
-          ],
+          auth: {
+            htaccess: {
+              username: process.env.JWT_USER,
+              password: process.env.JWT_PASSWORD
+            }
+          }
       }
     },
   ],

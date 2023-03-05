@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import parse from "html-react-parser"
+import { HeaderNavigation, FooterNavigation } from "../components/navigation"
 
 import "../styles/@wordpress/block-library/build-style/style.css"
 import "../styles/@wordpress/block-library/build-style/theme.css"
@@ -34,13 +35,15 @@ const Layout = ({ isHomePage, children }) => {
             {title}
           </Link>
         )}
+        <HeaderNavigation />
       </header>
 
       <main className="containe px-4">
         {children}
       </main>
 
-      <footer className="container bg-slate-400 h-40 mt-10 mb-0 p-4">
+      <footer className="container bg-slate-200 h-40 mt-10 mb-0 p-4">
+        <FooterNavigation />
       </footer>
     </div>
   )

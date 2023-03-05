@@ -1,4 +1,5 @@
 const path = require(`path`)
+const parse = require('html-react-parser');
 
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -10,7 +11,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const pages = await getPages({ graphql, reporter })
   await createPages({ pages, createPage })
-
 
 }
 
