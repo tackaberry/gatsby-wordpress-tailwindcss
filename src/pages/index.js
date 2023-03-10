@@ -32,6 +32,14 @@ const IndexPage = ({data}) => (
           </Link>
         </div>
       ))}
+      <h4>Categories</h4>
+      {data.allWpTermNode.nodes.map(category => (
+        <div className="card"  key={category.slug}>
+          <Link to={`/category/${category.slug}`}>
+            <h2>{category.name}</h2>
+          </Link>
+        </div>
+      ))}
   </Layout>
 )
 
@@ -49,6 +57,12 @@ export const pageQuery = graphql`
     allWpPage {
       nodes {
         title
+        slug
+      }
+    }
+    allWpTermNode {
+      nodes {
+        name
         slug
       }
     }

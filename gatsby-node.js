@@ -9,6 +9,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const posts = await getPosts({ graphql, reporter })
   await createIndividualBlogPostPages({ posts, createPage })
 
+  const postsByTermSlug = {}
+  posts.forEach( ({post}) =>{
+    post.terms.nodes.forEach(term=>{
+      postsByTermSlug[term.slug] = postsByTermSlug[term.slug] || []
+      postsByTermSlug[term.slug].push(post)  
+    })
+  })
+
+  const terms = await getTerms({ graphql, reporter })
+
+  terms.forEach( ({term}) =>{
+    const posts = postsByTermSlug[term.slug]
+    const count = posts.length
+    createPage({
+      path: `category/${term.slug}`,
+      component: path.resolve(`./src/templates/post-archive.js`),
+      context: {
+        id: term.id,
+        term, posts, count
+      },
+    })
+  })
+
   const pages = await getPages({ graphql, reporter })
   await createPages({ pages, createPage })
 
@@ -53,8 +76,6 @@ const createCareerNode = async ({
   })
 }
 
-
-
 const getPages = async ({ graphql, reporter }) => {
   const graphqlResult = await graphql(`
     query WpPages {
@@ -91,6 +112,13 @@ const getPosts = async ({ graphql, reporter }) => {
           post: node {
             id
             uri
+            title
+            terms {
+              nodes {
+                name
+                slug
+              }
+            }
           }
           next {
             id
@@ -109,6 +137,33 @@ const getPosts = async ({ graphql, reporter }) => {
   }
 
   return graphqlResult.data.allWpPost.edges
+}
+
+
+const getTerms = async ({ graphql, reporter }) => {
+  const graphqlResult = await graphql( `
+    query WpTerms {
+      allWpTermNode {
+        edges {
+          term: node {
+            id
+            name
+            slug
+          }
+        }
+      }
+    }
+  `)
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      graphqlResult.errors
+    )
+    return
+  }
+
+  return graphqlResult.data.allWpTermNode.edges
 }
 
 const createPages = async ({ pages, createPage }) =>
