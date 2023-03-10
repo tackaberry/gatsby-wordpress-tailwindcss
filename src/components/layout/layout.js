@@ -1,11 +1,11 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import parse from "html-react-parser"
-import { HeaderNavigation, FooterNavigation } from "../components/navigation"
+import { HeaderNavigation, FooterNavigation } from "../navigation"
 
-import "../styles/@wordpress/block-library/build-style/style.css"
-import "../styles/@wordpress/block-library/build-style/theme.css"
-import "../styles/global.css"
+import "../../styles/@wordpress/block-library/build-style/style.css"
+import "../../styles/@wordpress/block-library/build-style/theme.css"
+import "../../styles/global.css"
 
 const Layout = ({ isHomePage, children }) => {
   const {

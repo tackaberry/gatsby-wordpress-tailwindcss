@@ -2,11 +2,13 @@ import React from "react"
 import { Link } from "gatsby"
 import parse from "html-react-parser"
 
-import Layout from "../components/layout"
+import { Layout } from "../components/layout"
+import { Seo } from "../components/seo"
 
 const BlogPostArchiveTemplate = ( { pageContext: { posts, count, term }} ) => {
   return (
     <Layout>
+      <Seo title={term.name} />
       <h1>{term.name}</h1>
       <nav className="blog-post-nav">
         <ul >
