@@ -5,7 +5,6 @@ import parse from "html-react-parser"
 import Layout from "../components/layout"
 
 const BlogPostArchiveTemplate = ( { pageContext: { posts, count, term }} ) => {
-  console.log(posts);
   return (
     <Layout>
       <h1>{term.name}</h1>
