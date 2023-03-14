@@ -6,7 +6,6 @@ import { Categories } from "../components/categories";
 
 const handleShortcodes = (node) => {
     let shortcode = ""
-    console.log(node);
     if (node.type && node.type === "tag") {
         shortcode = node.children[0]?.data;
     }
