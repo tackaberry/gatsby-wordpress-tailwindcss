@@ -70,3 +70,18 @@ add_filter( 'graphql_data_is_private', function( $is_private, $model_name, $data
 }, 10, 6 );
 
 ```
+
+## Careers
+
+In addition to Wordpress, a careers job portal data feed is pulled in to GraphQL on build. The data can then used to prebuild a list of links to job postings. 
+
+
+## Special hooks for content in wordpress
+
+Replacement [shortcodes](https://www.smashingmagazine.com/2012/05/wordpress-shortcodes-complete-guide/) are configured to help content editors access some functionality. For example, drop a list of job postings, or list of blog categories.  While some wordpress widgets do work, there may be some front end functionality required that needs something more like a shortcode replacement. 
+
+Shortcodes should be added as paragraph text in the Wordpress editor like `[careers]`. 
+
+Shortcodes configured are:
+- Careers - `[careers]` - list of job postings from HR supplier (in most cases, not Wordpress). 
+- Categories  - `[categories]` - list of wordpress blog categories. 
