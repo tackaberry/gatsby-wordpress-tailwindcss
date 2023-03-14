@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import parse from "html-react-parser"
 
+import { parseContent } from "../utils"
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
@@ -17,14 +17,13 @@ const PageTemplate = ({ data: { post } }) => {
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{parse(post.title)}</h1>
+          <h1 itemProp="headline">{parseContent(post.title)}</h1>
         </header>
 
         {!!post.content && (
-          <section itemProp="articleBody">{parse(post.content)}</section>
+          <section itemProp="articleBody">{parseContent(post.content)}</section>
         )}
-
-
+        
       </article>
 
     </Layout>

@@ -7,9 +7,9 @@ const Nav = () => {
     const data = useStaticQuery(graphql`
         query {
             wpNavigation( title: {eq: "Footer Navigation"} ) {
-            id
-            content
-            slug
+              id
+              content
+              slug
             }
         }`)
 
