@@ -41,6 +41,8 @@ Set up local wordpress instance with [https://localwp.com/](https://localwp.com/
 
 ### Plugin to expose navigation to wpgraphql
 
+This plugin needs to be added to Wordpress CMS. The file `plugin.zip` in a zip of a php file containing the code below.  Add this plugin through the Wordpress admin console. 
+
 ```php
 
 <?php
