@@ -39,6 +39,14 @@ Set up local wordpress instance with [https://localwp.com/](https://localwp.com/
 - [WPGatsby](https://wordpress.org/plugins/wp-gatsby/)
 - [WPGraphQL](https://wordpress.org/plugins/wp-graphql/)
 
+### Create navigation objects
+
+This particular example expects 2 specific navigation objects in Wordpress and the plugin below exposes them on GraphQL. 
+
+This approach is simply to demonstrate an example of how to tie in navigation. To play along, create "Header Navigation" and "Footer Navigation". 
+
+The new version of Wordpress has removed menus from the left navigation, this is managed in the page editor when editing the header and footer. 
+
 ### Plugin to expose navigation to wpgraphql
 
 This plugin needs to be added to Wordpress CMS. The file `plugin.zip` in a zip of a php file containing the code below.  Add this plugin through the Wordpress admin console. 
