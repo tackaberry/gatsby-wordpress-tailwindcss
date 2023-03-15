@@ -49,7 +49,7 @@ The new version of Wordpress has removed menus from the left navigation, this is
 
 ### Plugin to expose navigation to wpgraphql
 
-This plugin needs to be added to Wordpress CMS. The file `plugin.zip` in a zip of a php file containing the code below.  Add this plugin through the Wordpress admin console. 
+This plugin needs to be added to Wordpress CMS. The file `graphql-navigation-plugin.zip` is a zip of a php file containing the code below.  Add this plugin through the Wordpress admin console. 
 
 ```php
 
