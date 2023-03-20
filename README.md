@@ -41,6 +41,8 @@ Set up local wordpress instance with [https://localwp.com/](https://localwp.com/
 
 ### CLI
 
+The core set up commands can be completed with tht WP-CLI.  You can access by clicking `Open site shell`.
+
 ```bash
 wp plugin install wp-gatsby --activate
 wp plugin install wp-gatsby --activate
