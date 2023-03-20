@@ -21,15 +21,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   terms.forEach( ({term}) =>{
     const posts = postsByTermSlug[term.slug]
-    const count = posts.length
-    createPage({
-      path: `category/${term.slug}`,
-      component: path.resolve(`./src/templates/post-archive.js`),
-      context: {
-        id: term.id,
-        term, posts, count
-      },
-    })
+    if(posts){
+      const count = posts.length
+      createPage({
+        path: `category/${term.slug}`,
+        component: path.resolve(`./src/templates/post-archive.js`),
+        context: {
+          id: term.id,
+          term, posts, count
+        },
+      })
+    }
   })
 
   const pages = await getPages({ graphql, reporter })
@@ -170,7 +172,7 @@ const createPages = async ({ pages, createPage }) =>
   Promise.all(
     pages.map(({ page }) =>
       createPage({
-        path: page.uri,
+        path: page.uri || page.id,
         component: path.resolve(`./src/templates/page.js`),
         context: {
           id: page.id,
@@ -184,7 +186,7 @@ const createIndividualBlogPostPages = async ({ posts, createPage }) =>
   Promise.all(
     posts.map(({ previous, post, next }) =>
       createPage({
-        path: post.uri,
+        path: post.uri || post.id,
         component: path.resolve(`./src/templates/post.js`),
         context: {
           id: post.id,
