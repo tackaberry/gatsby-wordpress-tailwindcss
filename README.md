@@ -39,6 +39,13 @@ Set up local wordpress instance with [https://localwp.com/](https://localwp.com/
 - [WPGatsby](https://wordpress.org/plugins/wp-gatsby/)
 - [WPGraphQL](https://wordpress.org/plugins/wp-graphql/)
 
+### CLI
+
+```bash
+wp plugin install wp-gatsby --activate
+wp plugin install wp-gatsby --activate
+```
+
 ### Create navigation objects
 
 This particular example expects 2 specific navigation objects in Wordpress and the plugin below exposes them on GraphQL. 
