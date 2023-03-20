@@ -44,6 +44,11 @@ Set up local wordpress instance with [https://localwp.com/](https://localwp.com/
 ```bash
 wp plugin install wp-gatsby --activate
 wp plugin install wp-gatsby --activate
+wp plugin install /path/to/graphql-navigation-plugin.zip --activate
+
+wp menu create "Header Navigation"
+wp menu create "Footer Navigation"
+
 ```
 
 ### Create navigation objects
