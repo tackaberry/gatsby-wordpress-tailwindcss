@@ -1,0 +1,4 @@
+mysql.connector
+configparser
+requests
+python-slugify
