@@ -78,7 +78,6 @@ for post in result:
                         VALUES ( { ', '.join(['%s' for i in range(valuesObject.keys().__len__())])  } )  \
                       "
       values = list(valuesObject.values())
-      print(values)
       cursorLoop.execute(insertQuery, values)
       last_id = cursorLoop.lastrowid
 
