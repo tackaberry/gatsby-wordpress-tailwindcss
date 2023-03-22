@@ -34,7 +34,7 @@ for post in result:
   date = post[2]
   id = post[0]
 
-  search = re.findall(r'src="'+config["default"]["LOCAL_URL_PREFIX"]+'(.*?)"', content)
+  search = re.findall(r'src="'+config["default"]["REMOTE_URL_PREFIX"]+'(.*?)"', content)
 
   for image in search:
 
@@ -46,6 +46,20 @@ for post in result:
     slug = slugify(filename)
     guid = config["default"]["LOCAL_URL_PREFIX"]+image
 
+    if not os.path.exists(config["default"]["IMG_DATA_PATH"] + "/" + image):
+      
+      print(f"Downloading: {image}")
+
+      res = requests.get(config["default"]["REMOTE_URL_PREFIX"] +image, stream=True, headers={'User-agent': 'Mozilla/5.0'})
+
+      if not os.path.exists(path):
+        os.makedirs(path)  
+
+      if res.status_code == 200:
+        with open(config["default"]["IMG_DATA_PATH"] + "/" + image,'wb') as f:
+            shutil.copyfileobj(res.raw, f)
+
+    
     query = f"SELECT post_content, ID FROM {prefix}posts WHERE (post_type='attachment') and guid like '{guid}'"
     cursorLoop.execute(query)
     imageDb = cursorLoop.fetchone()
@@ -89,19 +103,5 @@ for post in result:
       cursorLoop.execute(insertMetaQuery, valuesMeta)
       subprocess.call([os.getcwd()+"/run.sh", f"{last_id}", f'{config["default"]["WEB_ROOT_PATH"]}' ])
 
-
-    if os.path.exists(config["default"]["IMG_DATA_PATH"] + "/" + image):
-       continue
-    
-    print(f"Downloading: {image}")
-
-    res = requests.get(config["default"]["REMOTE_URL_PREFIX"] +image, stream=True, headers={'User-agent': 'Mozilla/5.0'})
-
-    if not os.path.exists(path):
-       os.makedirs(path)  
-
-    if res.status_code == 200:
-      with open(config["default"]["IMG_DATA_PATH"] + "/" + image,'wb') as f:
-          shutil.copyfileobj(res.raw, f)
 
 cnx.close()

@@ -11,10 +11,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const postsByTermSlug = {}
   posts.forEach( ({post}) =>{
-    post.terms.nodes.forEach(term=>{
-      postsByTermSlug[term.slug] = postsByTermSlug[term.slug] || []
-      postsByTermSlug[term.slug].push(post)  
-    })
+    if(post.terms){
+      post.terms.nodes.forEach(term=>{
+        postsByTermSlug[term.slug] = postsByTermSlug[term.slug] || []
+        postsByTermSlug[term.slug].push(post)  
+      })
+    }
   })
 
   const terms = await getTerms({ graphql, reporter })
